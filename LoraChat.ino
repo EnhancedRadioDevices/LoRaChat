@@ -28,6 +28,11 @@ void setup()
 {
   Serial.begin(9600);
   Serial.print(F("Welcome to LoRaChat\r\n"));
+  pinMode(3,OUTPUT);                                                    // Configure reset pin
+  digitalWrite(3, LOW);                                                 // Perform reset for SX1276
+  delay(10);
+  digitalWrite(3, HIGH);
+  delay(10);
   if (!rf95.init()) {                                                   // This inits the radio. The program will fail here if there's a communication issue
     Serial.println(F("SX1276 Failure: init failed."));                  // Print error messages
     Serial.println(F("Check hardware connections. Halting program."));  // Print error messages
